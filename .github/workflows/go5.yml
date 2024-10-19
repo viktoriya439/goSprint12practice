@@ -1,0 +1,33 @@
+name: Go5
+
+on:
+  push:
+    branches: ["new_workflow"]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22.4'  # Укажите нужную вам версию Go
+
+    - name: Build
+      run: go build -v ./...
+
+  tests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22'
+
+    - name: Test
+      run: go test -v ./...
+
