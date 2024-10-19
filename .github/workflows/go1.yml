@@ -2,7 +2,7 @@ name: Go1
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
 
 jobs:
 
